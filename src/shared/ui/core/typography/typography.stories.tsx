@@ -3,14 +3,20 @@ import { View } from 'react-native';
 import { storiesOf } from '@storybook/react-native';
 import { styled } from '@shared/ui/theme';
 
-import { Typography } from './typography';
+import { Typography as TypographyComponent } from './typography';
 
-const TypographyWithPadding = styled(Typography)`
+const TypographyWithPadding = styled(TypographyComponent)`
   padding: ${({ theme }) => theme.spacing(1.5)}px
     ${({ theme }) => theme.spacing(2)}px;
 `;
 
-storiesOf('ui', module).add('Typography', () => (
+const Meta = {
+  title: 'ui',
+};
+
+export default Meta;
+
+export const Typography = () => (
   <View>
     <TypographyWithPadding variant="title">Title 34 bold</TypographyWithPadding>
     <TypographyWithPadding variant="largeTitle">
@@ -42,4 +48,4 @@ storiesOf('ui', module).add('Typography', () => (
     </TypographyWithPadding>
     <TypographyWithPadding variant="button">Button</TypographyWithPadding>
   </View>
-));
+);
