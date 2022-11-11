@@ -6,6 +6,9 @@ import { useFonts } from 'expo-font';
 import { AppThemeProvider, styled } from '@shared/ui/theme';
 import { AppNavigation } from '@pages/ui';
 
+import { Storybook } from '../../../.storybook';
+import { SafeAreaProvider, SafeAreaView } from 'react-native-safe-area-context';
+
 const StorybookButton = styled.TouchableOpacity`
   height: 32px;
   padding: ${({ theme }) => theme.spacing(1)}px;
@@ -23,11 +26,7 @@ const customFonts = {
   SF_PRO_REGULAR_400: require('../../../assets/fonts/SFProDisplay-Regular.ttf'),
 };
 
-type Props = {
-  storybookUI?: ReactNode;
-};
-
-export const App = ({ storybookUI }: Props) => {
+export const App = () => {
   const [isFontsLoaded] = useFonts(customFonts);
   const [isStorybookClosed, setStorybookClosed] = useState(false);
 
@@ -35,14 +34,18 @@ export const App = ({ storybookUI }: Props) => {
     return <AppLoading />;
   }
 
-  if (storybookUI && !isStorybookClosed) {
+  if (!isStorybookClosed) {
     return (
       <StrictMode>
         <AppThemeProvider>
-          {storybookUI}
-          <StorybookButton onPress={() => setStorybookClosed(true)}>
-            <StorybookButtonText>OPEN APP</StorybookButtonText>
-          </StorybookButton>
+          <SafeAreaProvider>
+            <SafeAreaView style={{ flex: 1 }}>
+              <Storybook />
+              <StorybookButton onPress={() => setStorybookClosed(true)}>
+                <StorybookButtonText>OPEN APP</StorybookButtonText>
+              </StorybookButton>
+            </SafeAreaView>
+          </SafeAreaProvider>
         </AppThemeProvider>
       </StrictMode>
     );
