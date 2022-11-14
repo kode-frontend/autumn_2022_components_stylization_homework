@@ -11,7 +11,7 @@ const TypographyWithPadding = styled(TypographyComponent)`
 `;
 
 const Meta = {
-  title: 'ui',
+  title: 'ui/atoms/Typography',
 };
 
 export default Meta;
@@ -22,8 +22,11 @@ export const Typography = () => (
     <TypographyWithPadding variant="largeTitle">
       Large title 28 medium
     </TypographyWithPadding>
-    <TypographyWithPadding variant="subtitle">
-      Subtitle 20 semibold
+    <TypographyWithPadding variant="subtitle1">
+      Subtitle 1 20 semibold
+    </TypographyWithPadding>
+    <TypographyWithPadding variant="subtitle2">
+      Subtitle 2 17 semibold
     </TypographyWithPadding>
     <TypographyWithPadding variant="body20">
       Body 20 regular
